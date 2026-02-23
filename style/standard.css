@@ -45,7 +45,9 @@ background-color: #c7c5c5;
      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
      
 }
-
+h1:hover {
+   
+    cursor: no-drop;}
 
 input {
     padding: 10px;
@@ -60,11 +62,23 @@ input {
 
 
 h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+background-color: #6199e3;
+    padding: 20px;
+    margin: 15px 0;
+    width: 150px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
     font-family: cursive;
+    font-size: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
+
+h2:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    cursor: no-drop;
+}
+
 
 .content_direction {
     display: flex;
