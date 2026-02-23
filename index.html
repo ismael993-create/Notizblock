@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notizblock</title>
+    <link rel="stylesheet" href="/style/dialog.css">
+    <link rel="stylesheet" href="/style/standard.css">
+    <link rel="stylesheet" href="style/button.css">
+    <script defer src="/scripts/dialog.js"></script>
+    <script defer src="/scripts/add_deletenotes.js"></script>
+    <script defer src="/scripts/template.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body onload="init()">
+    <div class="content_direction">
+    <h1>Notizblock</h1>
+    <input id="title_input" type="text" placeholder="Hier bitte den Titel eingeben" required>
+    <input id="note_Input" type="text" placeholder="Hier bitte die Notiz eingeben" required>
+    <button onclick="addNote()">Notiz Speichern</button>
+    <h2>Notes</h2>
+    <div id="content">
+    </div>
+    <h2>Trash</h2>
+    <div id="content_trash">
+
+    </div>
+</div>
+
+
+<dialog id="archiv_dialog" class="dialog">
+        <div id="archiv_content"></div>
+        <button onclick="closeDialog()">Schließen</button>
+        
+    </dialog>
+</body>
+
+</html>
