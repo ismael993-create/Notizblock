@@ -8,11 +8,19 @@ function addNote() {
   // eingabe validieren wenn nichts eingegeben wurde, soll eine alert box erscheinen, die den user auffordert etwas einzugeben
   if (noteInput.trim() === "") {
     alert("Bitte etwas eingeben!");
+   
     return;
   }
 
     let titleInputRef = document.getElementById("title_input");
   let titleinput = titleInputRef.value;
+
+   if (titleinput.trim() === "") {
+    alert("Bitte einen Titel eingeben!");
+  
+    return;
+    
+  }
 
   // eingabe den notizen hinzufügen
   notes.push(noteInput);
