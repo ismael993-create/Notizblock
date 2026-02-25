@@ -54,7 +54,7 @@ function renderArchivePreview() {
       <p><strong>${tempDeletedTitle}</strong></p>
       <p>${tempDeletedNote}</p>
 
-      <button onclick="confirmRestore()">Wiederherstellen</button>
+      <button onclick="confirmRestore()">Beibehalten</button>
       <button class="trash_btn2" onclick="confirmTrash()">In Trash verschieben</button>
     </div>
   `;
