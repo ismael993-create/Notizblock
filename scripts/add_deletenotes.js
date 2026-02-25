@@ -107,7 +107,7 @@ function confirmTrash() {
 
   trashNotes.push(tempDeletedNote);
   trashNoteTitles.push(tempDeletedTitle);
-
+//erst hier unten können notizen angezeigt werden und trash etc.
   renderNotes();
   renderTrashNotes();
   saveToLocalStorage();
