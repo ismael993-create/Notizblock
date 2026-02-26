@@ -5,6 +5,9 @@ Ein einfacher Notizblock mit Speicherfunktion und Papierkorb.
 ## 🚀 Live Demo
 👉 https://ismael993-create.github.io/Notizblock/
 
+## 📸 Vorschau
+![Preview](/preview_notes.png)
+
 ## 🛠️ Features
 - Notizen hinzufügen
 - Notizen löschen
