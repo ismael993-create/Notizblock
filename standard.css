@@ -16,7 +16,13 @@ html, body {
     margin: 0;
 }
 
-
+body {
+    background-image: url(./img/notesbgr.jpg) !important;
+    background-size: cover;      
+    background-position: center;   
+    background-repeat: no-repeat;  
+    background-attachment: fixed;  
+}
 
 
 p {
