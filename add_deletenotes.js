@@ -1,4 +1,48 @@
 // 1. Notizen hinzufügen
+// object for all notes, trash and archive
+let allNotes = {
+  'notesTitles': [],
+  'notes': [],
+  'trashNoteTitles': [],
+  'trashNotes': [],
+  'archiveTitles': [],
+  'archiveNotes': [],
+};
+
+//Notiz anzeigen lassen 
+function renderNotes() {
+  // ich muss defineren, wo sie angezeigt werden sollen
+  let contentRef = document.getElementById("content");
+  contentRef.innerHTML = "";
+  for (let indexNote = 0; indexNote < allNotes.notes.length; indexNote++) {
+    contentRef.innerHTML += getNoteTemplate(indexNote);
+  
+  } 
+}
+
+// eine funktion die alle Notes verschiebt
+
+function moveNote(indexNote, notesKey, titlesKey, destNotesKey, destTitlesKey) {
+    let note  = allNotes[notesKey].splice(indexNote, 1)[0];
+    let title = allNotes[titlesKey].splice(indexNote, 1)[0];
+
+    allNotes[destNotesKey].push(note);
+    allNotes[destTitlesKey].push(title);
+    
+renderAllfunction()
+    
+}
+
+
+function renderAllfunction() {
+  renderNotes();
+    renderTrashNotes();
+    renderArchive();
+    saveToLocalStorage();
+  
+}
+
+
 
 // eingabe von user definieren
 function addNote() {
@@ -23,8 +67,8 @@ function addNote() {
   }
 
   // eingabe den notizen hinzufügen
-  notes.push(noteInput);
-  notesTitle.push(titleinput);
+ allNotes.notes.push(noteInput);
+allNotes.notesTitles.push(titleinput);
 
   // eingabe anzeigen lassen im content container
   renderNotes();
@@ -41,9 +85,10 @@ saveToLocalStorage();
 // wann muss die notiz gelöscht werden?
 
 function trashNote(indexNote) {
-  tempDeletedIndex = indexNote;
-  tempDeletedNote = notes[indexNote];
-  tempDeletedTitle = notesTitle[indexNote];
+tempDeletedNote  = allNotes.notes[indexNote];     
+tempDeletedTitle = allNotes.notesTitles[indexNote];
+tempDeletedIndex = indexNote;
+
 
   renderArchivePreview();
   showDialog();
@@ -56,7 +101,7 @@ function renderTrashNotes() {
 
   for (
     let indexTrashNote = 0;
-    indexTrashNote < trashNotes.length;
+    indexTrashNote < allNotes.trashNotes.length;
     indexTrashNote++
   ) {
     trashContentRef.innerHTML += getTrashNoteTemplate(indexTrashNote);
@@ -68,56 +113,26 @@ function renderTrashNotes() {
 // Trash Notizen löschen
 
 function deleteTrashNote(indexTrashNote) {
-  trashNotes.splice(indexTrashNote, 1);
-  trashNoteTitles.splice(indexTrashNote, 1);
-   renderNotes();
-  renderTrashNotes();
-    saveToLocalStorage();
+ allNotes.trashNotes.splice(indexTrashNote, 1);       
+  allNotes.trashNoteTitles.splice(indexTrashNote, 1);
+  renderAllfunction()
 }
-
 
 
 // 3. Notizen archievieren
 // wann soll die archivierte notiz angezeigt werden? beim betätigen des buttons
 // welche notiz soll archiviert werden? diejenige, bei der der button betätigt wurde
 
+function confirmTrash() {
+    moveNote(tempDeletedIndex, 'notes', 'notesTitles', 'trashNotes', 'trashNoteTitles');
+    closeDialog();
+}
+
 function restoreFromTrash(indexTrashNote) {
-  let restoredNote = trashNotes.splice(indexTrashNote, 1)[0];
-  let restoredTitle = trashNoteTitles.splice(indexTrashNote, 1)[0];
-
-  notes.push(restoredNote);
-  notesTitle.push(restoredTitle);
-
-  renderNotes();
-  renderTrashNotes();
-  saveToLocalStorage();
+    moveNote(indexTrashNote, 'trashNotes', 'trashNoteTitles', 'notes', 'notesTitles');
 }
 
 function moveToTrash(index) {
-  let deletedNote = archiveNotes.splice(index, 1)[0];
-  let deletedTitle = archiveTitles.splice(index, 1)[0];
-
-  trashNotes.push(deletedNote);
-  trashNoteTitles.push(deletedTitle);
-
-  renderTrashNotes();
-  renderArchive();
-  closeDialog();
-  saveToLocalStorage();
-}
-
-
-  // Jetzt erst löschen
-function confirmTrash() {
-
-  notes.splice(tempDeletedIndex, 1);
-  notesTitle.splice(tempDeletedIndex, 1);
-
-  trashNotes.push(tempDeletedNote);
-  trashNoteTitles.push(tempDeletedTitle);
-//erst hier unten können notizen angezeigt werden und trash etc.
-  renderNotes();
-  renderTrashNotes();
-  saveToLocalStorage();
-  closeDialog();
+    moveNote(index, 'archiveNotes', 'archiveTitles', 'trashNotes', 'trashNoteTitles');
+    closeDialog();
 }

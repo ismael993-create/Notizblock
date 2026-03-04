@@ -1,27 +1,8 @@
-let notesTitle = [];
-let notes = [];
-// Papierkorb anzeige
-let trashNoteTitles = [];
-let trashNotes = [];
 
-let archiveTitles = [];
-let archiveNotes = [];
-
-
-// 1. Notizen hinzufügen
-function renderNotes() {
-  // ich muss defineren, wo sie angezeigt werden sollen
-  let contentRef = document.getElementById("content");
-  contentRef.innerHTML = "";
-  for (let indexNote = 0; indexNote < notes.length; indexNote++) {
-    contentRef.innerHTML += getNoteTemplate(indexNote);
-  
-  }
-}
 function getNoteTemplate(indexNote) {
   return `<div class="note_card">
-    <p>- Titel: ${notesTitle[indexNote]} <br>
-     ->${notes[indexNote]} <br>
+    <p>- Titel: ${allNotes.notesTitles[indexNote]} <br>
+     ->${allNotes.notes[indexNote]} <br>
 
     <button class="trash_btn" onclick="trashNote(${indexNote})">x</button></p>
   </div>`;
@@ -31,8 +12,8 @@ function getNoteTemplate(indexNote) {
 function getTrashNoteTemplate(indexTrashNote) {
   return `
     <div class="note_card trash_card">
-      <p><strong>${trashNoteTitles[indexTrashNote]}</strong></p>
-      <p class="trash_txt">${trashNotes[indexTrashNote]}</p>
+      <p><strong>${allNotes.trashNoteTitles[indexTrashNote]}</strong></p>
+      <p class="trash_txt">${allNotes.trashNotes[indexTrashNote]}</p>
 
       <button onclick="restoreFromTrash(${indexTrashNote})">
         Wiederherstellen
@@ -66,11 +47,11 @@ function renderArchive() {
   let archivRef = document.getElementById("archiv_content");
   archivRef.innerHTML = "";
 
-  for (let i = 0; i < archiveNotes.length; i++) {
+  for (let i = 0; i < allNotes.archiveNotes.length; i++) {
     archivRef.innerHTML += `
       <div class="note_card">
-        <p><strong>${archiveTitles[i]}</strong></p>
-        <p>${archiveNotes[i]}</p>
+        <p><strong>${allNotes.archiveTitles[i]}</strong></p>
+        <p>${allNotes.archiveNotes[i]}</p>
 
         <button onclick="closeDialog()">
           Wiederherstellen
